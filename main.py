@@ -15,8 +15,9 @@ opts = Options()
 opts.add_argument('--headless')
 opts.add_argument('--disable-gpu')
 opts.add_argument('--no-sandbox')
-opts.add_argument('--proxy-server=http://xxxx:xxxx')
-opts.add_argument('--proxy-auth=xxxx:xxxx')
+# under auth proxy
+# opts.add_argument('--proxy-server=http://PROXY:PORT')
+# opts.add_argument('--proxy-auth=USER:PASSWORD')
 browser = webdriver.Chrome(chrome_options=opts)
 
 browser.get('https://github.com/a')
@@ -33,7 +34,7 @@ time.sleep(1) # wait rendering
 graph_element = browser.find_element_by_class_name('js-contribution-graph')
 # scroll
 # browser.execute_script('arguments[0].scrollIntoView(true);', graph_element)
-browser.save_screenshot('screenshot_browser.png')
+#browser.save_screenshot('screenshot_browser.png')
 
 #def get_element_screenshot(element: WebElement) -> bytes:
 driver = graph_element._parent
@@ -42,7 +43,7 @@ src_base64 = driver.get_screenshot_as_base64()
 scr_png = b64decode(src_base64)
 
 scr_img = Image.open(BytesIO(scr_png))
-scr_img.save('screenshot_movetoelement.png', 'PNG')
+#scr_img.save('screenshot_movetoelement.png', 'PNG')
 
 #scr_img = Image.open(blob=scr_png)
 
